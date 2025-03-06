@@ -1,0 +1,53 @@
+<p>user works!</p><div class="container mt-5">
+  <div class="card shadow p-4">
+    <h2 class="text-center mb-4">Signup</h2>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter your name" [(ngModel)]="nameInput" />
+        <div *ngIf="submitted && formControls.name.invalid" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email" [(ngModel)]="emailInput" />
+        <div *ngIf="submitted && formControls.email.invalid" class="text-danger">
+          Enter a valid email.
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Create a password" />
+        <div *ngIf="submitted && formControls.password.invalid" class="text-danger" fo>
+          Password must be at least 6 characters.
+        </div>
+      </div>
+
+      <!-- Submit Button with Property Binding -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="!userForm.valid">Signup</button>
+    </form>
+  </div>
+
+  <!-- Display Two-Way Binding Values -->
+  <div class="alert alert-info mt-3" *ngIf="nameInput || emailInput">
+    <strong>Live Preview:</strong> {{ nameInput }} ({{ emailInput }})
+  </div>
+
+  <!-- Display List of Registered Users -->
+  <div class="card mt-4 shadow p-4" *ngIf="users.length > 0">
+    <h3 class="text-center">Registered Users</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let user of users">
+        <strong>Name:</strong> {{ user.name }} <br />
+        <strong>Email:</strong> {{ user.email }}
+      </li>
+    </ul>
+  </div>
+</div>
