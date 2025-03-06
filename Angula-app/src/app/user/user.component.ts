@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -48,6 +48,6 @@ export class UserComponent {
   }
 
   get formControls() {
-    return this.userForm.controls;
+    return this.userForm.controls as {[key: string] : AbstractControl};
   }
 }
